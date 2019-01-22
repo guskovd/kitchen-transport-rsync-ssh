@@ -1,4 +1,4 @@
-os_type: linux
+os_type: linuxp
 shell_type: bash
 
 provisioner:
@@ -13,6 +13,8 @@ platforms:
       command: cd /tmp/kitchen/data; . integration/init.sh
     transport:
       name: rsync_ssh
+      protocol: ssh
+      user: kitchen
     driver_config:
       name: docker
       image: alpine

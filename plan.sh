@@ -10,6 +10,7 @@ pkg_deps=(
     core/hab
     core/git
     core/docker
+    core/rsync
     core/ruby/$RUBY_VERSION
 )
 
@@ -21,9 +22,9 @@ do_shell() {
 
     . ~/.bashrc
 
-    pushd "$( builtin cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )" > /dev/null
-    bundle install --binstubs > /dev/null
-    popd > /dev/null
+    # pushd "$( builtin cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )" > /dev/null
+    # bundle install --binstubs > /dev/null
+    # popd > /dev/null
 
     export PATH="$( builtin cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )/bin:$PATH"
 }
