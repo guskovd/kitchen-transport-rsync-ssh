@@ -69,7 +69,7 @@ module Kitchen
             rsync_cmd = "rsync -Lqrazc #{rsync_candidates.join(' ')} rsync://#{session.host}/#{remote}"
           else
             ssh_command = if options[:password]
-                            "sshpass -p #{options[:password]} #{ssh_args.join(' ')}"
+                            "sshpass -p #{options[:password]} ssh #{ssh_args.join(' ')}"
                           else
                             "ssh #{ssh_args.join(' ')}"
                           end
