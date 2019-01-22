@@ -2,8 +2,6 @@ pkg_name="kitchen-transport-rsync-ssh"
 pkg_origin="guskovd"
 pkg_version="1.4"
 
-pkg_hab_shell_interpreter="bash"
-
 RUBY_VERSION=2.5.1
 
 pkg_deps=(
