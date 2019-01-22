@@ -68,7 +68,11 @@ module Kitchen
           if @protocol == 'rsync'
             rsync_cmd = "rsync -Lqrazc #{rsync_candidates.join(' ')} rsync://#{session.host}/#{remote}"
           else
-            ssh_command = "ssh #{ssh_args.join(' ')}"
+            ssh_command = if options[:password]
+                            "sshpass -p #{options[:password]} #{ssh_args.join(' ')}"
+                          else
+                            "ssh #{ssh_args.join(' ')}"
+                          end
             rsync_cmd = "rsync -e '#{ssh_command}' -az#{logger.level == :debug ? 'vv' : ''} --delete #{rsync_candidates.join(' ')} #{username}@#{session.host}:#{remote}"
           end
           time = Benchmark.realtime do
