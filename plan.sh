@@ -22,11 +22,14 @@ do_shell() {
 
     . ~/.bashrc
 
-    # pushd "$( builtin cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )" > /dev/null
-    # bundle install --binstubs > /dev/null
-    # popd > /dev/null
-
     export PATH="$( builtin cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )/bin:$PATH"
+}
+
+do_setup() {
+    pushd "$( builtin cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )" > /dev/null
+    bundle install --binstubs
+    popd > /dev/null
+
 }
 
 do_build() {
