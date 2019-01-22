@@ -16,8 +16,14 @@ module Kitchen
       # Connection
       class Connection < Ssh::Connection
         def login_command
-          args  = %W{ -p #{options[:password]}}
-          args += %w{ ssh }
+          if options[:password]
+            command = 'sshpass'
+            args  = %W{ -p #{options[:password]}}
+            args += %w{ ssh }
+          else
+            command = 'ssh'
+            args = []
+          end
           args += %w{ -o UserKnownHostsFile=/dev/null }
           args += %w{ -o StrictHostKeyChecking=no }
           args += %w{ -o IdentitiesOnly=yes } if options[:keys]
@@ -34,7 +40,9 @@ module Kitchen
           args += %W{ -p #{port} }
           args += %W{ #{username}@#{hostname} }
 
-          l = LoginCommand.new("sshpass", args)
+          logger.debug("Starting command: #{args} with args: #{args}")
+
+          l = LoginCommand.new(command, args)
         end
 
         def upload(locals, remote)

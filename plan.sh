@@ -9,6 +9,7 @@ pkg_deps=(
     core/bash
     core/hab
     core/git
+    core/docker
     core/ruby/$RUBY_VERSION
 )
 
